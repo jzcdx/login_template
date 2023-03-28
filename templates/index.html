@@ -1,12 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>hello 2</h1>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <h1 id="header">login</h1>
+        <form>
+            <div id="sign-in">
+                <label>Email</label>
+                <input type="text" placeholder="Email">
+                <label>Password</label>
+                <input type="text" placeholder="Password">
+                <input type="submit">
+                <button type="button" onclick="showSignUp()">Sign Up</button>
+            </div>
+
+            <div id="sign-up">
+                <label>Email</label>
+                <input type="text" placeholder="Email" id="newUsername">
+                <label>Password</label>
+                <input type="text" placeholder="Password" id="newPassword">
+                <label>Confirm Password</label>
+                <input type="text" placeholder="Confirm Password" id="newPasswordC">
+                <button onclick="submit_new_account()">Sign Up</button>
+            </div>
+        </form>
+        <script src="{{ url_for('static', filename='scripts/index.js') }}"></script>
+    </body>
 </html>
