@@ -13,9 +13,11 @@ def new_account():
         print(account_data)
         dbh = DBH()
         account_made = dbh.create_account(account_data["email"], account_data["password"]);
+        #should probably update the frontend from here lol
         if account_made:
             print("account has been made successfully")
         else:
+            
             print("email is already taken")
     return {'updated': 'true'}
 

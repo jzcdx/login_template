@@ -34,6 +34,13 @@ function submit_new_account() {
         success: function(result) { //when the response comes back and it's successful, run the code below
             //This updates the description with the new value from the textarea
             console.log(result)
+            backToLogin()
         } 
     });
+}
+
+function backToLogin() {
+    signUpDiv.style.display = "none";
+    signInDiv.style.display = "block";
+    header.innerHTML = "login"
 }
