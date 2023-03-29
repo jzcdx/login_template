@@ -22,12 +22,12 @@
 
             <div id="sign-up">
                 <label>Email</label>
-                <input type="text" placeholder="Email" id="newUsername">
+                <input type="text" placeholder="Email" id="newEmail">
                 <label>Password</label>
                 <input type="text" placeholder="Password" id="newPassword">
                 <label>Confirm Password</label>
                 <input type="text" placeholder="Confirm Password" id="newPasswordC">
-                <button onclick="submit_new_account()">Sign Up</button>
+                <button type="button" onclick="submit_new_account()">Sign Up</button>
             </div>
         </form>
         <script src="{{ url_for('static', filename='scripts/index.js') }}"></script>

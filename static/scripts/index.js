@@ -14,6 +14,7 @@ function showSignUp() {
 }
 
 function submit_new_account() {
+    console.log("heeeeere");
     var newEmail = document.getElementById("newEmail").value;
     var newPassword = document.getElementById("newPassword").value;
     var newPasswordC = document.getElementById("newPasswordC").value;
@@ -26,7 +27,7 @@ function submit_new_account() {
 
     $.ajax({
         type: "POST", //method
-        url: "/makenewnccount", //this is the flask route
+        url: "/signup", //this is the flask route
         data: JSON.stringify(newAccountData), //I have no idea what this is
         contentType: "application/json",
         dataType: 'json', 

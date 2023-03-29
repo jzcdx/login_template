@@ -24,6 +24,7 @@ class DBH: #database helper
 
     def test(self): #to see if the connections work
         with self.engine.connect() as conn:
+            print("dbh test function invoked")
             stmt = select(self.user_account);
             res = conn.execute(stmt);
             rows = res.mappings().all()
@@ -73,8 +74,8 @@ dbh = DBH()
 
 res = dbh.read_password("bearsley@gmail.com");
 res = dbh.read_password("asdf@gmail.com")
-print(res)
+#print(res)
 pw_input = "iambearsley"
 pw_input = "testpassword7"
-print("checking pw: " , bcrypt.checkpw(pw_input.encode('utf8'), res.encode('utf8')))
+#print("checking pw: " , bcrypt.checkpw(pw_input.encode('utf8'), res.encode('utf8')))
 
