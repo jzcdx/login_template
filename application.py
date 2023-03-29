@@ -24,6 +24,7 @@ def new_account():
 
 @application.route("/login", methods=["POST"])
 def login():
+    print("here")
     if request.method == "POST":
         login_details = request.get_json()
         dbh = DBH()
@@ -32,8 +33,9 @@ def login():
         if correct_password: #email exists in db
             #now we check if the password hashes match
             passwords_match = bcrypt.checkpw(password_attempt.encode('utf8'), correct_password.encode('utf8'))
-            print("passwords match: " , passwords_match);_
+            print("passwords match: " , passwords_match);
         else:
             print("email does not exist in database")
+    return {'login attempted':'true'}
 if __name__ == "__main__":
     application.run(debug=True, use_reloader=True, threaded=True)

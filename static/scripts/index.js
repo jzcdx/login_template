@@ -23,7 +23,10 @@ function submit_new_account() {
         return;
     }
 
-    var newAccountData = {email: newEmail, password: newPassword};
+    var newAccountData = {
+        email: newEmail, 
+        password: newPassword
+    };
 
     $.ajax({
         type: "POST", //method
@@ -43,4 +46,24 @@ function backToLogin() {
     signUpDiv.style.display = "none";
     signInDiv.style.display = "block";
     header.innerHTML = "login"
+}
+
+function submitLoginDetails() {
+    console.log("h")
+    var loginAttempt = {
+        email: document.getElementById("attemptEmail").value,
+        password: document.getElementById("attemptPassword").value 
+    }
+
+    $.ajax({
+        type: "POST", //method
+        url: "/login", //this is the flask route
+        data: JSON.stringify(loginAttempt), //I have no idea what this is
+        contentType: "application/json",
+        dataType: 'json', 
+        success: function(result) { //when the response comes back and it's successful, run the code below
+            //This updates the description with the new value from the textarea
+            console.log(result)
+        } 
+    });
 }
