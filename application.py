@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request
 from db_utils import DBH
+import bcrypt
+
 application = Flask(__name__)
 
 @application.route("/")
@@ -17,11 +19,21 @@ def new_account():
         if account_made:
             print("account has been made successfully")
         else:
-            
             print("email is already taken")
     return {'updated': 'true'}
 
-#@application.route("/login", methods=[""])
-
+@application.route("/login", methods=["POST"])
+def login():
+    if request.method == "POST":
+        login_details = request.get_json()
+        dbh = DBH()
+        password_attempt = login_details["password"]
+        correct_password = dbh.read_password(login_details["email"])
+        if correct_password: #email exists in db
+            #now we check if the password hashes match
+            passwords_match = bcrypt.checkpw(password_attempt.encode('utf8'), correct_password.encode('utf8'))
+            print("passwords match: " , passwords_match);_
+        else:
+            print("email does not exist in database")
 if __name__ == "__main__":
     application.run(debug=True, use_reloader=True, threaded=True)
