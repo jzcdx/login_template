@@ -14,7 +14,6 @@ def main():
 def new_account():
     if request.method == "POST":
         account_data = request.get_json()
-        print(account_data)
         dbh = DBH()
         account_made = dbh.create_account(account_data["email"], account_data["password"]);
         #should probably update the frontend from here lol
@@ -46,6 +45,6 @@ def login():
             print("email does not exist in database")
             return {"email exists": False, "password correct": False}
     
-    return {"correct request": False, "email exists": True, "password correct": True}
+    return {"correct request": False, "email exists": False, "password correct": False}
 if __name__ == "__main__":
     application.run(debug=True, use_reloader=True, threaded=True)

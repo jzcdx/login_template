@@ -36,7 +36,7 @@ function submit_new_account() {
         dataType: 'json', 
         success: function(result) { //when the response comes back and it's successful, run the code below
             //This updates the description with the new value from the textarea
-            console.log(result)
+            //console.log(result)
             backToLogin()
         } 
     });

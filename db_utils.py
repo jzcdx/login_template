@@ -29,7 +29,6 @@ class DBH: #database helper
             res = conn.execute(stmt);
             rows = res.mappings().all()
             conn.close()
-            print(rows);
             return rows;
 
     def read_password(self, email): #userId
@@ -64,7 +63,7 @@ class DBH: #database helper
             ).returning(self.user_account.c.id)
 
             new_id = conn.execute(stmt)
-            print("created account, new id: " , new_id.mappings().all())
+            #print("created account, new id: " , new_id.mappings().all())
             conn.commit();
             return True #acc creation succeeded
 
