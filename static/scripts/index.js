@@ -62,11 +62,18 @@ function submitLoginDetails() {
         dataType: 'json', 
         success: function(result) { //when the response comes back and it's successful, run the code below
             //This updates the description with the new value from the textarea
-            console.log(result)
+            
+            loginLabel = document.getElementById("login-indicator");
             if (result["password correct"]) {
                 console.log("password right");
+                loginLabel.innerHTML = "Logging in";
             } else {
                 console.log("password wrong")
+                if (result["email exists"]) {
+                    loginLabel.innerHTML = "Password Incorrect";
+                } else {
+                    loginLabel.innerHTML = "Email Incorrect";
+                }
             }
         } 
     });

@@ -41,11 +41,11 @@ def login():
                 session["email"] = login_details["email"]
                 return {"email exists": True, "password correct": True}
             else:
-                return {"password correct": False}
+                return {"email exists": True, "password correct": False}
         else:
             print("email does not exist in database")
             return {"email exists": False, "password correct": False}
     
-    return {"correct request":False, "email exists": True, "password correct": True}
+    return {"correct request": False, "email exists": True, "password correct": True}
 if __name__ == "__main__":
     application.run(debug=True, use_reloader=True, threaded=True)
