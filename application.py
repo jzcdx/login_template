@@ -1,8 +1,10 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 from db_utils import DBH
 import bcrypt
+import secrets
 
 application = Flask(__name__)
+application.secret_key = secrets.token_urlsafe(16)
 
 @application.route("/")
 def main():
@@ -24,7 +26,6 @@ def new_account():
 
 @application.route("/login", methods=["POST"])
 def login():
-    print("here")
     if request.method == "POST":
         login_details = request.get_json()
         dbh = DBH()
@@ -33,9 +34,18 @@ def login():
         if correct_password: #email exists in db
             #now we check if the password hashes match
             passwords_match = bcrypt.checkpw(password_attempt.encode('utf8'), correct_password.encode('utf8'))
-            print("passwords match: " , passwords_match);
+            
+            #print("passwords match: " , passwords_match);
+            if passwords_match:
+                session["logged_in"] = True
+                session["email"] = login_details["email"]
+                return {"email exists": 'true', "password correct:": 'true'}
+            else:
+                return {"password correct:": 'false'}
         else:
             print("email does not exist in database")
-    return {'login attempted':'true'}
+            return {"email exists": 'false', "password correct:": 'false'}
+    
+    return {"correct request":'false', "email exists": 'false', "password correct:": 'false'}
 if __name__ == "__main__":
     application.run(debug=True, use_reloader=True, threaded=True)
