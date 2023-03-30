@@ -35,17 +35,17 @@ def login():
             #now we check if the password hashes match
             passwords_match = bcrypt.checkpw(password_attempt.encode('utf8'), correct_password.encode('utf8'))
             
-            #print("passwords match: " , passwords_match);
+            print("passwords match: " , passwords_match);
             if passwords_match:
                 session["logged_in"] = True
                 session["email"] = login_details["email"]
-                return {"email exists": 'true', "password correct:": 'true'}
+                return {"email exists": True, "password correct": True}
             else:
-                return {"password correct:": 'false'}
+                return {"password correct": False}
         else:
             print("email does not exist in database")
-            return {"email exists": 'false', "password correct:": 'false'}
+            return {"email exists": False, "password correct": False}
     
-    return {"correct request":'false', "email exists": 'false', "password correct:": 'false'}
+    return {"correct request":False, "email exists": True, "password correct": True}
 if __name__ == "__main__":
     application.run(debug=True, use_reloader=True, threaded=True)

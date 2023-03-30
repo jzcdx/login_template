@@ -49,7 +49,6 @@ function backToLogin() {
 }
 
 function submitLoginDetails() {
-    console.log("h")
     var loginAttempt = {
         email: document.getElementById("attemptEmail").value,
         password: document.getElementById("attemptPassword").value 
@@ -64,6 +63,11 @@ function submitLoginDetails() {
         success: function(result) { //when the response comes back and it's successful, run the code below
             //This updates the description with the new value from the textarea
             console.log(result)
+            if (result["password correct"]) {
+                console.log("password right");
+            } else {
+                console.log("password wrong")
+            }
         } 
     });
 }
